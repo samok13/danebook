@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Danebook</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <h1>
+   <% if signed_in_user? %>
+      Welcome, <%= link_to current_user.name, current_user %>!
+    <% end %>
+
+  </h1>    
+
+    <%= link_to "Logout", logout_path, :method => :delete %>
+    <%= link_to "Login", login_path %>
+
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+$danebook: #2b7ae6;
+
+#danebook {
+
+  .navbar {
+
+    background-color: $danebook;
+    color: white;
+    border: none;
+    border-radius: 0;
+    border-color: none;
+
+    .navbar-brand img {
+      height: 20px;
+      width: 20px;
+      border-radius: 30px;
+    }
+
+    .navbar-text {
+      color: white;
+    }
+
+    .search {
+      width: 500px;
+    }
+  }
+
+  .cover-photo {
+    height: 300px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .profile-photo {
+    position: absolute;
+    top: 140px;
+    left: 30px;
+
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+
+    img {
+    }
+  }
+
+  h1.panel-title {
+    font-size: 2em;
+  }
+
+  .panel-title {
+    text-align: center;
+  }
+
+  dd {
+    margin-bottom: 10px;
+  }
+
+  .edit {
+    background-color: $danebook;
+    color: white;
+    margin-top: -31px;
+    float: right;
+    &:hover {
+      background-color: $danebook+30;
+    }
+  }
+
+  .live-by {
+    height: 100px;
+}
+
+  .about-me {
+    height: 200px;
+  }
+
+  .btn-primary {
+    background-color: $danebook;
+  }
+
+  .btn-right {
+    text-align: right;
+  }
+
+  .btn-center {
+    margin: 0 auto;
+    text-align: center;
+    a {
+      background-color: $danebook;
+    }
+  }
+
+
+  .media-left {
+    overflow: hidden;
+    width: 64px;
+    height: 64px;
+    img {
+      height: auto;
+      width: 64px;
+    }
+
+  }
+
+  .controls {
+    a {
+      margin-right: 10px;
+    }
+  }
+
+  .comment-body {
+    margin-top: 10px;
+  }
+
+  .comment {
+    margin-bottom: 25px;
+  }
+
+  .right {
+    text-align: right;
+    float: right;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .photo {
+    margin-bottom: 10px;
+    overflow: hidden;
+    height: 110px;
+    img {
+      width: 100%;
+    }
+
+  }
+
+  .friend {
+    margin-bottom: 10px;
+    .photo {
+      margin-bottom: 0px;
+    }
+  }
+
+
+  .comment-box {
+    textarea {
+      margin-bottom: 10px;
+    }
+  }
+
+  .comment-like {
+    a {
+      margin-right: 10px;
+    }
+  }
+
+  .likers {
+    margin-top: 10px;
+    color: gray;
+  }
+
+  .gray {
+    color: gray;
+    font-size: 0.9em;
+  }
+
+  .comments {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+  }
+
+
+}
+
+.nav-links {
+
+  li.active {
+    a {
+      color: black;
+      background-color: #ccc;
+      &:hover {
+      color: black;
+      background-color: #ccc;
+      cursor: default;
+      }
+    }
+  }
+
+  a {
+    color: black;
+  }
+
+  small {
+    color: gray;
+  }
+
+    padding-top: 10px;
+  .nav-pills {
+    margin-left: 230px;
+  }
+
+  .links-right {
+    a {
+      color: $danebook;
+    }
+    // text-decoration: underline;
+    float: right;
+  }
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+.navbar-collapse,.navbar-form,.navbar-default, .danebook-navhome {
+  border: none;
+}
+
+.danebook-navhome {
+  padding: 10px 0;
+}
+
+.danebook-brand {
+  color: white;
+
+  &.danebook-homepage {
+    font-size: 2.5em;
+    position: relative;
+    top: 13px;
+  }
+}
+
+.danebook-ul {
+  font-size: 1.3em;
+  color: grey;
+  line-height: 40px;
+}
+
+.danebook-sign-in {
+  .form-group {
+    padding-right: 20px;
+  }
+
+  button {
+    position: relative;
+    top: 13px;
+    background-color: #a0c6f9;
+    border-color: #a0c6f9;
+  }
+}
+
+.danebook-form-stack {
+  label {
+    display: block;
+  }
+}

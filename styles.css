@@ -1,0 +1,148 @@
+#danebook .navbar {
+  background-color: #2b7ae6;
+  color: white;
+  border: none;
+  border-radius: 0;
+  border-color: none; }
+  #danebook .navbar .navbar-brand img {
+    height: 20px;
+    width: 20px;
+    border-radius: 30px; }
+  #danebook .navbar .navbar-text {
+    color: white; }
+  #danebook .navbar .search {
+    width: 500px; }
+#danebook .cover-photo {
+  height: 300px;
+  overflow: hidden; }
+  #danebook .cover-photo img {
+    width: 100%; }
+#danebook .profile-photo {
+  position: absolute;
+  top: 140px;
+  left: 30px;
+  height: 200px;
+  width: 200px;
+  overflow: hidden; }
+#danebook h1.panel-title {
+  font-size: 2em; }
+#danebook .panel-title {
+  text-align: center; }
+#danebook dd {
+  margin-bottom: 10px; }
+#danebook .edit {
+  background-color: #2b7ae6;
+  color: white;
+  margin-top: -31px;
+  float: right; }
+  #danebook .edit:hover {
+    background-color: #4998ff; }
+#danebook .live-by {
+  height: 100px; }
+#danebook .about-me {
+  height: 200px; }
+#danebook .btn-primary {
+  background-color: #2b7ae6; }
+#danebook .btn-right {
+  text-align: right; }
+#danebook .btn-center {
+  margin: 0 auto;
+  text-align: center; }
+  #danebook .btn-center a {
+    background-color: #2b7ae6; }
+#danebook .media-left {
+  overflow: hidden;
+  width: 64px;
+  height: 64px; }
+  #danebook .media-left img {
+    height: auto;
+    width: 64px; }
+#danebook .controls a {
+  margin-right: 10px; }
+#danebook .comment-body {
+  margin-top: 10px; }
+#danebook .comment {
+  margin-bottom: 25px; }
+#danebook .right {
+  text-align: right;
+  float: right; }
+#danebook .center {
+  text-align: center; }
+#danebook .photo {
+  margin-bottom: 10px;
+  overflow: hidden;
+  height: 110px; }
+  #danebook .photo img {
+    width: 100%; }
+#danebook .friend {
+  margin-bottom: 10px; }
+  #danebook .friend .photo {
+    margin-bottom: 0px; }
+#danebook .comment-box textarea {
+  margin-bottom: 10px; }
+#danebook .comment-like a {
+  margin-right: 10px; }
+#danebook .likers {
+  margin-top: 10px;
+  color: gray; }
+#danebook .gray {
+  color: gray;
+  font-size: 0.9em; }
+#danebook .comments {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid #ccc; }
+
+.nav-links {
+  padding-top: 10px; }
+  .nav-links li.active a {
+    color: black;
+    background-color: #ccc; }
+    .nav-links li.active a:hover {
+      color: black;
+      background-color: #ccc;
+      cursor: default; }
+  .nav-links a {
+    color: black; }
+  .nav-links small {
+    color: gray; }
+  .nav-links .nav-pills {
+    margin-left: 230px; }
+  .nav-links .links-right {
+    float: right; }
+    .nav-links .links-right a {
+      color: #2b7ae6; }
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white; }
+
+.navbar-collapse, .navbar-form, .navbar-default, .danebook-navhome {
+  border: none; }
+
+.danebook-navhome {
+  padding: 10px 0; }
+
+.danebook-brand {
+  color: white; }
+  .danebook-brand.danebook-homepage {
+    font-size: 2.5em;
+    position: relative;
+    top: 13px; }
+
+.danebook-ul {
+  font-size: 1.3em;
+  color: grey;
+  line-height: 40px; }
+
+.danebook-sign-in .form-group {
+  padding-right: 20px; }
+.danebook-sign-in button {
+  position: relative;
+  top: 13px;
+  background-color: #a0c6f9;
+  border-color: #a0c6f9; }
+
+.danebook-form-stack label {
+  display: block; }
+
+/*# sourceMappingURL=styles.css.map */

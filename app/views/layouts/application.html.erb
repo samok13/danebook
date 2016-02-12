@@ -2,28 +2,24 @@
 <html>
 <head>
   <title>Danebook</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<% flash.each do |name,message| %>
+  <div class="flash flash-<%= name.to_s %>">
+    <%= "#{name.to_s.upcase}: #{message}" %>
+  </div>
+<% end %>
 
-
-  <h1>
-   <% if signed_in_user? %>
-      Welcome, <%= link_to "#{current_user.email}", current_user %>!
-    <% else %>
-      Welcome
-    <% end %>
-
-  </h1>  
-
-  <%= yield %>
-
-  <%= render :partial => 'shared/flash' %>  
-
-    
+<% if signed_in_user? %>
+  <h2>Welcome, <%= link_to "#{current_user.email}", current_user %>!</h2>
+<br>
+<%= yield %>
+<%= link_to "Logout", logout_path, method: :delete %>
+<% end %>
 
 
 

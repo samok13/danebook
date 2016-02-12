@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, :except => [:new, :create]
+  #skip_before_action :require_login, only: [:new, :create, :index, :show] #josh
   before_action :require_logout, :only => [:new]
   before_action :require_current_user, :only => [:edit, :update, :destroy]
 
@@ -15,40 +16,40 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def create
     @user = User.new(whitelisted_user_params)
     if @user.save
       sign_in(@user)
       flash[:success] = 'User was successfully created.'
-      redirect_to @user
+      redirect_to user_path(@user)
     else
       flash[:error] = 'User was not created.'
+      @user.errors.messages
       render :new
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
   def update
-    if @user.update(whitelisted_user_params)
-      sign_out
-      redirect_to @user, 
+    if current_user.(whitelisted_user_params)
       flash[:notice] = 'User was successfully updated.'
+      redirect_to current_user
     else
-     render :edit
      flash[:error] = 'User was not updated.'
+      render :edit
     end
   end
 
-
   def destroy
-    sign_out
-    flash[:notice] = 'You have successfully signed out.'
-    redirect_to new_session_path
+    if current_user.destroy
+      sign_out
+      flash[:notice] = 'You have successfully signed out.'
+    end
+    redirect_to root_url
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
   def whitelisted_user_params
     params.
       require(:user).
-      permit( :first_name, :last_name,:email,:password,:password_confirmation,:auth_token, :birthday, :gender)
+      permit( :email,:password,:password_confirmation)
   end
 
 end

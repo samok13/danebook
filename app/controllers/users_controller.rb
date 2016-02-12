@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-
-  #before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #before_action :authorize, only: [:edit, :update, :destroy]
-  # before_action :authenticate, except: [:index, :show]
-
+  before_action :require_login, :except => [:new, :create]
+  before_action :require_logout, :only => [:new]
+  before_action :require_current_user, :only => [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -23,54 +21,47 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(whitelisted_user_params)
-
- 
-      if @user.save
-        sign_in(@user)
-        flash[:success] = 'User was successfully created.'
-        redirect_to @user
-      else
-        flash[:error] = 'User was not created.'
-        render :new
-      end
+    if @user.save
+      sign_in(@user)
+      flash[:success] = 'User was successfully created.'
+      redirect_to @user
+    else
+      flash[:error] = 'User was not created.'
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @user.update(whitelisted_user_params)
-        sign_out
-        redirect_to @user, 
-        flash[:notice] = 'User was successfully updated.'
-      else
-       render :edit
-       flash[:error] = 'User was not updated.'
-
-      end
+    if @user.update(whitelisted_user_params)
+      sign_out
+      redirect_to @user, 
+      flash[:notice] = 'User was successfully updated.'
+    else
+     render :edit
+     flash[:error] = 'User was not updated.'
     end
   end
+
 
   def destroy
     sign_out
     flash[:notice] = 'You have successfully signed out.'
-    redirect_to users_path
-    end
+    redirect_to new_session_path
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
 
   def whitelisted_user_params
     params.
       require(:user).
-      permit( :name,
-              :email,
-              :password,
-              :password_confirmation,
-              ...)
+      permit( :first_name, :last_name,:email,:password,:password_confirmation,:auth_token, :birthday, :gender)
+  end
+
 end

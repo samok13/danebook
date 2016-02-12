@@ -1,0 +1,23 @@
+<%= form_for @user do |user_fields| %>
+
+  <br>
+  <%= user_fields.label :email %>
+  <%= user_fields.text_field :email %>
+  <br>
+  <%= user_fields.label :password %>
+  <%= user_fields.password_field :password %>
+  <br>
+  <%= user_fields.label :password_confirmation %>
+  <%= user_fields.password_field :password_confirmation %>
+  <br>
+ 
+  <%= user_fields.label :birthday %>
+  <%= user_fields.date_select :birthday, {order: [:month, :day, :year], prompt: {day: 'Day', month: 'Month', year: 'Year'}, start_year: Date.today.year-100, end_year: Date.today.year} %>
+  <br>
+  <%= user_fields.label :gender %>
+  <%= user_fields.radio_button :gender, 'male' %> Male
+  <%= user_fields.radio_button :gender, 'female' %> Female
+  <br>
+  <%= user_fields.submit %>
+
+<%end%>

@@ -2,11 +2,13 @@
 <html>
 <head>
   <title>Danebook</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="danebook">
 
 <% flash.each do |name,message| %>
   <div class="flash flash-<%= name.to_s %>">
@@ -16,12 +18,10 @@
 
 <% if signed_in_user? %>
   <h2>Welcome, <%= link_to "#{current_user.email}", current_user %>!</h2>
-<br>
-<%= yield %>
-<%= link_to "Logout", logout_path, method: :delete %>
+  <%= link_to "Logout", logout_path, method: :delete %>
 <% end %>
 
-
+<%= yield %>
 
 </body>
 </html>

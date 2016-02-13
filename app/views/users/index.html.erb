@@ -1,5 +1,9 @@
 <h1>Listing Users</h1>
 
+<% unless signed_in_user? %>
+  <%= link_to 'New User', new_user_path %>
+<% end %> 
+
 <table>
     
   <tbody>
@@ -19,4 +23,5 @@
 </table>
 
 <br>
-<%= link_to 'New User', new_user_path %>
+
+

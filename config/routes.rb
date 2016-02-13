@@ -1,13 +1,24 @@
 Rails.application.routes.draw do
 
-  resources :users
+  root 'users#new'
 
-  resource :session, :only => [:create, :destroy]
-  get "login" => "users#new"
+  resources :users do 
+    resources :profiles, :only => [:show, :edit, :update]
+  end
+
+  resource :session, :only => [:new, :create, :destroy]
+  get "login" => "sessions#new"
   delete "logout" => "sessions#destroy"
 
+  
+  resources :posts, :only => [:index, :create, :destroy] do
+    resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Post'}
+  end
 
-  root 'users#new'
+  get 'timeline' => 'posts#index'
+
+
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,125 @@
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="./home.html">
+            <img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/005/066/021/190fb06.jpg" alt="">
+
+            <span class="danebook-brand">Danebook</span>
+          </a>
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control search" placeholder="Search for Users">
+            </div>
+          </form>
+
+          <div class="navbar-right">
+            <p class="navbar-text"></p>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="cover-photo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Cuernos_del_Paine_from_Lake_Peho%C3%A9.jpg" alt="">
+        </div>
+
+        <div class="profile-photo">
+          <img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/005/066/021/190fb06.jpg" alt="">
+        </div>
+
+      </div>
+
+
+      <div class="nav-links">
+
+        <ul class="nav nav-pills">
+          <li role="presentation"><a href="./timeline.html">Timeline</a></li>
+          <li role="presentation" class="active"><a href="#">About</a></li>
+          <li role="presentation"><a href="./photos.html">Photos <small>(353)</small></a> </li>
+          <li role="presentation"><a href="./friends.html">Friends <small>(577)</small></a> </li>
+          <li role="presentation" class="links-right">
+         
+            <a href="./about_edit.html">Edit Profile</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1 class="panel-title">About</h1>
+              <a href="./about_edit.html" class="btn btn-default edit">Edit Profile</a>
+
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-sm-5">
+                  <h3>Basic Information</h3>
+                  <div class="row">
+
+                    <dt class="col-sm-5">Birthday:</dt>
+                    <dd class="col-sm-7" ><%= @profile.birthday %></dd>
+
+                    <dt class="col-sm-5">College:</dt>
+                    <dd class="col-sm-7" ><%=@profile.college%></dd>
+
+                    <dt class="col-sm-5">Hometown:</dt>
+                    <dd class="col-sm-7" ><%=@profile.hometown%></dd>
+
+                    <dt class="col-sm-5">Currently Lives:</dt>
+                    <dd class="col-sm-7" ><%=@profile.lives%></dd>
+                  </div>
+
+                  <h3>Contact Information</h3>
+
+                  <div class="row">
+                    <dt class="col-sm-5">Email:</dt>
+                    <dd class="col-sm-7" ><%=@profile.user.email%></dd>
+
+                    <dt class="col-sm-5">Telephone:</dt>
+                    <dd class="col-sm-7" ><%=@profile.number%></dd>
+                  </div>
+                </div>
+
+                <div class="col-sm-7">
+                  <h3>Words to Live By</h3>
+                  <p><%=@profile.words%></p>
+
+                  <h3>About Me</h3>
+                  <p><%=@profile.about%></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>

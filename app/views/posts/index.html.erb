@@ -1,0 +1,77 @@
+<div class="row">
+
+  <div class="col-sm-4">
+    <% if @posts %>
+    div class="col-sm-5">
+    <h3>Basic Information</h3>
+    <div class="row">
+
+      <dt class="col-sm-5">Birthday:</dt>
+      <dd class="col-sm-7" ><%=@profile.birthday%></dd>
+
+      <dt class="col-sm-5">College:</dt>
+      <dd class="col-sm-7" ><%=@profile.college%></dd>
+
+      <dt class="col-sm-5">Hometown:</dt>
+      <dd class="col-sm-7" ><%=@profile.hometown%></dd>
+
+      <dt class="col-sm-5">Currently Lives:</dt>
+      <dd class="col-sm-7" ><%=@profile.lives%></dd>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col-sm-4">
+    <% if user.photos %>
+    div class="col-sm-5">
+    <h3>Photos</h3>
+    <table>
+      <tr></tr>
+      <tr></tr>
+      <tr></tr>
+    </table>
+    <%end%>
+  </div>
+
+  <div class="col-sm-4">
+    <% if user.photos %>
+    div class="col-sm-5">
+    <h3>Friends</h3>
+    <table>
+      <tr></tr>
+      <tr></tr>
+      <tr></tr>
+    </table>
+    <%end%>
+  </div>
+
+
+  <div class="col-sm-7 col-sm-offset-1">
+    <% if @posts && current_user == @posts.first.user %>
+      <%= form_for [:user, post] do |f| %>
+        <%= field_with_errors(post, :body) %>
+        <%= f.text_field :body, placeholder: "Your post here.." %>
+        <%= f.submit "Post", class: "btn-primary" %>
+      <% end %>
+    <% end %>
+    
+    <%= link_to "#{post.user.first_name} #{post.user.last_name}", user_timeline_path %><br/>
+    Posted on <%= post.created_at.strftime("%A %D") %>
+  </div>
+
+  <div class="panel-body">
+    <%= post.body %>
+  </div>
+
+  <%= link_to "Like" %>
+  <%= link_to "Comment" %>
+
+  <% if current_user == post.user %>
+    <%= link_to "Delete", user_post_path(post.user, post), method: :delete, class: "pull-right" %>
+  <% end %>
+  
+
+  </div>
+
+
+</div>

@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
     # don't forget that params is a string!!!
     unless params[:id] == current_user.id.to_s
       flash[:error] = "You're not authorized to view this"
-      redirect_to root_url
+      redirect_to root_path
     end
   end 
 
@@ -54,4 +54,13 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
   helper_method :signed_in_user?
+
+  def require_object_owner
+    if User.find(params[:user_id]) != current_user
+      flash[:error] = "You're not authorized to view this"
+      redirect_to :back
+    end
+  end
+  helper_method :require_object_owner
+
 end

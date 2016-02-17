@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, :only => [:create]
+  skip_before_action :require_login, :only => [:create, :new]
+
+  def new
+    @user = User.find_by_email(params[:email])
+  end
 
   def create
     @user = User.find_by_email(params[:email])
@@ -12,7 +16,7 @@ class SessionsController < ApplicationController
       end
 
       flash[:success] = "You've successfully signed in"
-      redirect_to root_url
+      redirect_to user_timeline_path(@user)
       
     else
       flash.now[:error] = "We couldn't sign you in"

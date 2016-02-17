@@ -84,7 +84,7 @@
                   <div class="row">
 
                     <dt class="col-sm-5">Birthday:</dt>
-                    <dd class="col-sm-7" ><%= @profile.user.birthday %></dd>
+                    <dd class="col-sm-7" ><%= @profile.user.birthday if @profile.user.birthday %></dd>
 
                     <dt class="col-sm-5">College:</dt>
                     <dd class="col-sm-7" ><%=@profile.user.college%></dd>
@@ -100,7 +100,7 @@
 
                   <div class="row">
                     <dt class="col-sm-5">Email:</dt>
-                    <dd class="col-sm-7" ><%=@profile.user.user.email%></dd>
+                    <dd class="col-sm-7" ><%=@profile.user.email%></dd>
 
                     <dt class="col-sm-5">Telephone:</dt>
                     <dd class="col-sm-7" ><%=@profile.user.number%></dd>

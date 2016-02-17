@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_one :profile, inverse_of: :user, dependent: :destroy
   has_many :posts
+  has_many :comments
 
   before_create :generate_token
   after_create :create_profile
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
   validates :password, 
             :length => { :in => 8..24 }, 
             :allow_nil => true
+  validates :first_name, :last_name, :email, presence: true
 
   def generate_token
     begin

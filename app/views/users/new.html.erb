@@ -8,7 +8,7 @@ Login
 Create an account
 </h2> 
 <p>
-<%= render :partial => 'form' %>
+<%= render :partial => 'form', locals: {user: @user} %>
 </p>
 
 <br>

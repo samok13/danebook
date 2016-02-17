@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
 
-  before_action :require_login
-  before_action :require_object_owner, only: [:destroy]
+  before_action :require_login, except: [:index]
+  before_action :require_author, only: [:destroy]
 
   def index
-    @posts = Post.where(user_id: params[:user_id])
+    @user = User.find_by_id(params[:user_id])
+    #@posts = Post.where(user_id: params[:user_id])
     if signed_in_user?
       @new_post = current_user.posts.build
     end

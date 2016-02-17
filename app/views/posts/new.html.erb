@@ -1,0 +1,7 @@
+<%= form_for [:user, post] do |f| %>
+    <h3 >Post</h3>
+
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+  
+    <%= f.submit "Post" %>

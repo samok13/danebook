@@ -1,77 +1,78 @@
 <div class="row">
 
   <div class="col-sm-4">
-    <% if @posts %>
-    div class="col-sm-5">
     <h3>Basic Information</h3>
     <div class="row">
 
       <dt class="col-sm-5">Birthday:</dt>
-      <dd class="col-sm-7" ><%=@profile.birthday%></dd>
+      <dd class="col-sm-7" ><%= @user.profile.birthday %></dd>
 
       <dt class="col-sm-5">College:</dt>
-      <dd class="col-sm-7" ><%=@profile.college%></dd>
+      <dd class="col-sm-7" ><%= @user.profile.college %></dd>
 
       <dt class="col-sm-5">Hometown:</dt>
-      <dd class="col-sm-7" ><%=@profile.hometown%></dd>
+      <dd class="col-sm-7" ><%= @user.profile.hometown %></dd>
 
       <dt class="col-sm-5">Currently Lives:</dt>
-      <dd class="col-sm-7" ><%=@profile.lives%></dd>
+      <dd class="col-sm-7" ><%= @user.profile.lives %></dd>
     </div>
-    <% end %>
   </div>
 
-  <div class="col-sm-4">
-    <% if user.photos %>
-    div class="col-sm-5">
+  <div class="row">
+    <div class="col-sm-5">
     <h3>Photos</h3>
     <table>
       <tr></tr>
       <tr></tr>
       <tr></tr>
     </table>
-    <%end%>
+    </div>
   </div>
 
-  <div class="col-sm-4">
-    <% if user.photos %>
-    div class="col-sm-5">
+  <div class="row">
+    <div class="col-sm-5">
     <h3>Friends</h3>
     <table>
       <tr></tr>
       <tr></tr>
       <tr></tr>
     </table>
-    <%end%>
+    </div>
   </div>
 
 
-  <div class="col-sm-7 col-sm-offset-1">
-    <% if @posts && current_user == @posts.first.user %>
-      <%= form_for [:user, post] do |f| %>
-        <%= field_with_errors(post, :body) %>
-        <%= f.text_field :body, placeholder: "Your post here.." %>
-        <%= f.submit "Post", class: "btn-primary" %>
+
+  <!--  show each of the user's previous post by looping through user posts -->
+  <% @user.posts.each do |post| %>
+    <%= post.body %>
+
+    <% if @user == current_user %>
+      <!-- if user is logged in then they can make a new comment. -->
+      <%= render partial: "comments/new_comment", locals: { comment: current_user.comments.build, post: post} %>
+    <% end %>
+
+    <!--    for each post also loop through the comments/likes associated with it -->
+    <% post.likes.each do |like| %>
+      <%= render partial: "likes/show" %>
+    <% end %>
+
+    <!--  must also look at the likes for the comments  -->
+    <% post.comments.each do |comment| %>
+      <%= render partial: "comments/show_comment", locals: { comment: post.comment }  %>
+      <% post.comments.likes.each do |like| %>
+        <%= render partial: "likes/show", locals: { likes: post.likes }%>
       <% end %>
     <% end %>
-    
-    <%= link_to "#{post.user.first_name} #{post.user.last_name}", user_timeline_path %><br/>
-    Posted on <%= post.created_at.strftime("%A %D") %>
-  </div>
 
-  <div class="panel-body">
-    <%= post.body %>
-  </div>
+    <%= link_to "Comment" %>
+    <%= link_to "Like" %>
 
-  <%= link_to "Like" %>
-  <%= link_to "Comment" %>
+    <% if current_user == post.user %>
+      <%= link_to "Delete", user_post_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
 
-  <% if current_user == post.user %>
-    <%= link_to "Delete", user_post_path(post.user, post), method: :delete, class: "pull-right" %>
+
   <% end %>
-  
 
-  </div>
-
-
-</div>
+ 
+</div>  

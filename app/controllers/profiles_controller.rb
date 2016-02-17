@@ -3,18 +3,18 @@ class ProfilesController < ApplicationController
   before_action :profile_owner?, only: [:update]
 
   def show
-    @profile = current_user.profile
+    @profile = Profile.find_by_user_id(params[:user_id])
   end
 
   def edit
-    @profile = current_user.profile(whitelisted_user_params)
+    @profile = Profile.find_by_user_id(params[:user_id])
   end
 
   def update
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find_by_user_id(params[:user_id])
     if @profile.update(whitelisted_user_params)
-      flash[:success] = "Updates have saved."
-      redirect_to profile_path(@current_user.id)
+      flash[:success] = "Updates have been saved."
+      redirect_to user_profile_path(@profile.id)
     else
       flash[:error] = "Unable to update profile."
       render :edit
@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
   def profile_owner?
     unless Profile.find(params[:id]).user.id == current_user.id
       flash[:error] = "You're not authorized to do this!"
-      redirect_to user_path(@current_user.id)
+      redirect_to user_path(@profile.id)
     end
   end
 

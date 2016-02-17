@@ -10,12 +10,17 @@ Rails.application.routes.draw do
   get "login" => "sessions#new"
   delete "logout" => "sessions#destroy"
 
-  
-  resources :posts, :only => [:index, :create, :destroy] do
-    resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Post'}
+  resources :users do
+    resources :posts, :only => [:index, :create, :destroy] do
+      resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Post'}
+    end
+
+    resources :comments, only: [:create, :destroy] do
+      resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Comment'}
   end
 
-  get 'timeline' => 'posts#index'
+    get 'timeline' => 'posts#index'
+  end
 
 
   

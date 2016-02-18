@@ -60,7 +60,12 @@
     <% post.comments.each do |comment| %>
       <%= render partial: "comments/show_comment", locals: { comment: post.comment }  %>
       <% post.comments.likes.each do |like| %>
-        <%= render partial: "likes/show", locals: { likes: post.likes }%>
+      
+        <%= render partial: "likes/show", 
+          locals: { 
+            likes: post.likes 
+          }%>
+
       <% end %>
     <% end %>
 

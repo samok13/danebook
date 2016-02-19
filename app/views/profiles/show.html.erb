@@ -1,5 +1,59 @@
+<br>
+<%= link_to "Edit Profile", edit_user_profile_path %>
+<br>
+    
+  <table class="table col-sm-offset-1">
+  <thead>
+  <tr>
+    <th class="col-sm-6">Basic Information</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Birthday:</td>
+    <td><%= @profile.user.birthday.strftime("%B %d, %Y") if @profile.user.birthday%></td>
+  </tr>
+  <tr>
+    <td>College:</td>
+    <td><%= @profile.college %></td>
+  </tr>
+  <tr>
+    <td>Hometown</td>
+    <td><%= @profile.hometown  %></td>
+  </tr>
+  <tr>
+    <td>Currently Lives:</td>
+    <td><%= @profile.lives %></td>
+  </tr>
+  </tbody>
+  </table>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+  <table>
+  <thead>
+  <tr>
+    <th>Contact Information</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Email:</td>
+    <td><%= @profile.user.email %></td>
+  </tr>
+  </tbody>
+  </table>
+
+  <h3>About Me</h3>
+  <p><%= @profile.about %></p>
+  </section>
+  
+  <h3>Words to Live by</h3>
+  <p><%= @profile.words %></p>
+
+  
+
+    <!-- <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
 
         <div class="navbar-header">
@@ -84,35 +138,35 @@
                   <div class="row">
 
                     <dt class="col-sm-5">Birthday:</dt>
-                    <dd class="col-sm-7" ><%= @profile.user.birthday %></dd>
+                    <dd class="col-sm-7" ><= @profile.user.birthday %></dd>
 
                     <dt class="col-sm-5">College:</dt>
-                    <dd class="col-sm-7" ><%=@profile.user.college%></dd>
+                    <dd class="col-sm-7" ><=@profile.user.college%></dd>
 
                     <dt class="col-sm-5">Hometown:</dt>
-                    <dd class="col-sm-7" ><%=@profile.user.hometown%></dd>
+                    <dd class="col-sm-7" ><=@profile.user.hometown%></dd>
 
                     <dt class="col-sm-5">Currently Lives:</dt>
-                    <dd class="col-sm-7" ><%=@profile.user.lives%></dd>
+                    <dd class="col-sm-7" ><=@profile.user.lives%></dd>
                   </div>
 
                   <h3>Contact Information</h3>
 
                   <div class="row">
                     <dt class="col-sm-5">Email:</dt>
-                    <dd class="col-sm-7" ><%=@profile.user.user.email%></dd>
+                    <dd class="col-sm-7" ><=@profile.user.user.email%></dd>
 
                     <dt class="col-sm-5">Telephone:</dt>
-                    <dd class="col-sm-7" ><%=@profile.user.number%></dd>
+                    <dd class="col-sm-7" ><@profile.user.number%></dd>
                   </div>
                 </div>
 
                 <div class="col-sm-7">
                   <h3>Words to Live By</h3>
-                  <p><%=@profile.user.words%></p>
+                  <p><=@profile.user.words%></p>
 
                   <h3>About Me</h3>
-                  <p><%=@profile.user.about%></p>
+                  <p><=@profile.user.about%></p>
                 </div>
 
               </div>
@@ -122,4 +176,4 @@
         </div>
       </div>
 
-    </div>
+    </div> -->

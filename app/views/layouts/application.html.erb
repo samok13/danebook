@@ -18,6 +18,8 @@
 
 <% if signed_in_user? %>
   <h2>Welcome, <%= link_to "#{current_user.email}", current_user %>!</h2>
+  <%= link_to "Timeline", timeline_path %> |
+  <%= link_to "Profile", user_profile_path %> |
   <%= link_to "Logout", logout_path, method: :delete %>
 <% end %>
 

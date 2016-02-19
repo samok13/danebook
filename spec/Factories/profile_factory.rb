@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-factory :profile
+factory :profile do
   college "The Tute"
   hometown "Carlisle"
   lives "San Francisco"
@@ -11,3 +11,4 @@ factory :profile
   user
   #indicates an association with expected naming
  end
+end

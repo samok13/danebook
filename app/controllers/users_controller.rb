@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, :except => [:new, :create]
+  before_action :require_login, :except => [:index, :new, :create]
   #skip_before_action :require_login, only: [:new, :create, :index, :show] #josh
   #before_action :require_logout, :only => [:new]
   before_action :require_current_user, :only => [:edit, :update, :destroy]
@@ -22,21 +22,20 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       flash[:success] = 'User was successfully created.'
-      redirect_to user_profile_path(@user)
+      redirect_to edit_user_profile_path(@user)
     else
       flash[:error] = 'User was not created.'
-      @user.errors.messages
       render :new
     end
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
-    if current_user.update
+    @user = User.find(params[:id])
+    if @user.update(whitelisted_user_params)
       flash[:notice] = 'User was successfully updated.'
       redirect_to user_path(@user)
     else
@@ -65,9 +64,8 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
 
   def whitelisted_user_params
-    params.
-      require(:user).
-      permit( :email,:password,:password_confirmation, :first_name, :last_name, :birthday, :gender)
+    params.require(:user).
+      permit( :first_name, :last_name, :email,:password,:password_confirmation,:birthday,:gender)
   end
 
 end

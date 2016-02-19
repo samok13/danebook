@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
-  has_one :profile, inverse_of: :user, dependent: :destroy
+  has_one :profile, dependent: :destroy
   has_many :posts
   has_many :comments
 
   before_create :generate_token
   after_create :create_profile
-  #before_action :require_login, :except => [:new, :create]
   has_secure_password
 
   validates :password, 

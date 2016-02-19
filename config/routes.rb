@@ -3,25 +3,24 @@ Rails.application.routes.draw do
   root 'users#new'
 
   resources :users do 
-    resources :profiles, :only => [:show, :edit, :update]
-  end
 
-  resource :session, :only => [:new, :create, :destroy]
-  get "login" => "sessions#new"
-  delete "logout" => "sessions#destroy"
+    resource :profile, :only => [:show, :edit, :update]
 
-  resources :users do
     resources :posts, :only => [:index, :create, :destroy] do
       resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Post'}
     end
+  end
 
+  resources :comments, only: [:create, :destroy] do
+    resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Comment'}
+  end
 
-    resources :comments, only: [:create, :destroy] do
-      resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Comment'}
-    end
+  resource :session, :only => [:new, :create, :destroy]
+  get "login" => "users#new"
+  delete "logout" => "sessions#destroy"
 
     get 'timeline' => 'posts#index'
-  end
+end
 
 
   
@@ -81,4 +80,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+

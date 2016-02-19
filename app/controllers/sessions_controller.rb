@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         sign_in(@user)
       end
 
-      flash[:success] = "You've successfully signed in"
+      flash[:success] = "You have successfully signed in"
       redirect_to user_timeline_path(@user)
       
     else
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    flash[:success] = "You've successfully signed out"
-    redirect_to root_url
+    flash[:success] = "You have successfully signed out"
+    redirect_to root_path
   end
 end

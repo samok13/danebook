@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,6 +37,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -51,5 +52,10 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
 end
 

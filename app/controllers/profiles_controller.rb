@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
 
   private
   def whitelisted_user_params
-    params.require(:profile).permit(:hometown, :lives, :words, :about, :college)
+    params.require(:profile).permit(:hometown, :lives, :words, :about, :college, :avatar)
   end
 
 

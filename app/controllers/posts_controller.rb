@@ -1,14 +1,17 @@
 class PostsController < ApplicationController
 
+  layout "timeline"
   before_action :require_login, except: [:index]
   before_action :require_author, only: [:destroy]
 
   def index
-    @user = User.find_by_id(params[:user_id])
-    #@posts = Post.where(user_id: params[:user_id])
+    puts params
+    @user = current_user
+    @posts = Post.where(user_id: @user.id)
     if signed_in_user?
       @new_post = current_user.posts.build
     end
+    @new_comment = Comment.new
   end
 
   def create
@@ -19,7 +22,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = "Post has NOT been created :("
     end
-    redirect_to user_timeline_path
+    redirect_to posts_path
   end
 
 
@@ -30,7 +33,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = "Post has NOT been deleted."
     end
-    redirect_to user_timeline_path
+    redirect_to posts_path
   end
 
   private

@@ -1,10 +1,10 @@
 
-<%= link_to author(comment), user_timeline_path(comment.user_id) %> created at <%= comment.created_at %>:
+<%= link_to author(comment), posts_path(comment.user_id) %> commented at <%= comment.created_at %>:
 <br/>
 
 <%= comment.body %>
 <br/>
 
 <% if current_user && current_user.id == comment.user_id %>
-  <%= link_to "Delete", user_comment_path(comment.user_id, comment), method: :delete %>
+  <%= link_to "Delete", comment_path(comment), method: :delete %>
 <% end %>

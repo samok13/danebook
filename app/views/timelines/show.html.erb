@@ -1,6 +1,13 @@
 
 <!-- Basic Information -->
 
+<div><h2><%= @user.first_name %>'s Profile</h2>
+</div>
+
+<% if signed_in_user? && current_user != @user %>
+  <%= render partial: "shared/friend_button", locals: { user: @user } %>
+<% end %>
+
 <div class="row">
   <div class="col-xs-4">
     <h3>About</h3>
@@ -95,7 +102,7 @@
       <% end %>
 
       <!-- Display New Comment Form -->
-      <% if current_user %>
+      <% if signed_in_user? %>
       <div>
         <%= render partial: "comments/new_comment", locals: { post: post } %>
       </div>
@@ -104,47 +111,3 @@
     <% end %>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

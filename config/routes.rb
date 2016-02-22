@@ -2,24 +2,29 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
+  resource :profile, :only => [:edit, :update]
+
   resources :users do 
+    resource :profile, :only => [:show]
 
-    resource :profile, :only => [:show, :edit, :update]
+    resource :timeline, :only => [:show]
+  end
 
-    resources :posts, :only => [:index, :create, :destroy] do
-      resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Post'}
-    end
+  resources :posts, only: [:index, :create, :destroy] do
+    resources :likes, only: [:create], defaults: {:likeable => 'Post'}
   end
 
   resources :comments, only: [:create, :destroy] do
-    resources :likes, only: [:create, :destroy], defaults: {:likeable => 'Comment'}
+    resources :likes, only: [:create], defaults: {:likeable => 'Comment'}
   end
+
+  resources :likes, only: [:destroy]
+
+  resources :friendings, :only => [:create, :destroy]
 
   resource :session, :only => [:new, :create, :destroy]
   get "login" => "users#new"
   delete "logout" => "sessions#destroy"
-
-    get 'timeline' => 'posts#index'
 end
 
 

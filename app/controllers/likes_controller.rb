@@ -5,6 +5,8 @@ class LikesController < ApplicationController
 
 def create
     @like = Like.new(whitelisted_like_params)
+    @like.user = current_user
+    
     if @like.save
       flash[:success] = "Like was recorded."
     else
@@ -20,13 +22,13 @@ def create
     else
       flash[:error] = "Unable to delete like."
     end
-    redirect_to root_url
+    redirect_to :back
   end
 
 
   private
   def whitelisted_like_params
-    params.require(:like).permit(:user_id, :likeable_id, :likeable_type)
+    params.require(:like).permit(:likeable_id, :likeable_type)
   end
 
 end

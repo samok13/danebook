@@ -1,8 +1,8 @@
 
 <% if likes.count == 1 %>
-<%= link_to "#{likes.first.user.first_name} #{likes.first.user.last_name}",user_timeline_path(likes.first.user) %> likes this.
+<%= link_to "#{likes.first.user.first_name} #{likes.first.user.last_name}",posts_path(likes.first.user) %> likes this.
 
 <% else %>
-<%= link_to "#{likes.first.user.first_name} #{likes.first.user.last_name}", user_timeline_path(likes.first.user) %> and <%= likes.count - 1 %> others like this.
+<%= link_to "#{likes.first.user.first_name} #{likes.first.user.last_name}", posts_path(likes.first.user) %> and <%= likes.count - 1 %> others like this.
 
 <% end %>

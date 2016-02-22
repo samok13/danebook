@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216214555) do
+ActiveRecord::Schema.define(version: 20160222090704) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20160216214555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "friendings", force: :cascade do |t|
+    t.integer  "friend_id",   null: false
+    t.integer  "friender_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "friendings", ["friend_id", "friender_id"], name: "index_friendings_on_friend_id_and_friender_id", unique: true
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,7 +53,6 @@ ActiveRecord::Schema.define(version: 20160216214555) do
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.string   "number"
-    t.date     "birthday"
     t.string   "college"
     t.string   "hometown"
     t.string   "lives"

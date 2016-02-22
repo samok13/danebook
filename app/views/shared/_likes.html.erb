@@ -1,0 +1,17 @@
+
+
+<!--  Display Single Like  -->
+<% if likes.count == 1 %>
+  <%= link_to "#{likes.first.user.first_name} #{likes.first.user.last_name}",posts_path(likes.first.user) %> likes this.
+
+
+<!-- Display Two Likes -->
+<% elsif likes.count == 2 %>
+  <%= link_to "#{likes.first.user.first_name} #{likes.first.user.last_name}", posts_path(likes.first.user) %> and 1 other like this.
+
+<!-- Display Many Likes -->
+<% else %>
+  <%= link_to "#{likes.first.user.first_name} #{likes.first.user.last_name}", posts_path(likes.first.user) %> and <%= likes.count - 1 %> others like this.
+
+<% end %>
+

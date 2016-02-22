@@ -22,9 +22,10 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       flash[:success] = 'User was successfully created.'
-      redirect_to edit_user_profile_path(@user)
+      redirect_to edit_profile_path(@user)
     else
-      flash[:error] = 'User was not created.'
+      flash[:error] = 'User was not created: ' + 
+        @user.errors.full_messages.join(', ')
       render :new
     end
   end

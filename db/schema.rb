@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222090704) do
+ActiveRecord::Schema.define(version: 20160223041203) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20160222090704) do
   add_index "likes", ["user_id", "likeable_type", "likeable_type"], name: "index_likes_on_user_id_and_likeable_type_and_likeable_type", unique: true
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
+  create_table "photos", force: :cascade do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id"
+
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.text     "body",       null: false
@@ -51,17 +63,21 @@ ActiveRecord::Schema.define(version: 20160222090704) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.integer  "user_id",    null: false
+    t.integer  "user_id",        null: false
     t.string   "number"
     t.string   "college"
     t.string   "hometown"
     t.string   "lives"
     t.string   "about"
     t.string   "words"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "avatar_id"
+    t.integer  "cover_photo_id"
   end
 
+  add_index "profiles", ["avatar_id"], name: "index_profiles_on_avatar_id"
+  add_index "profiles", ["cover_photo_id"], name: "index_profiles_on_cover_photo_id"
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true
 
   create_table "users", force: :cascade do |t|

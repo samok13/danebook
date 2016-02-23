@@ -1,0 +1,22 @@
+
+  <tbody>
+      <th><h2>Photos</h2></th>
+      <th><%= link_to "Add Photo", new_photo_path %></th>
+  <table>
+  <div>
+
+   <% if @user.friends.include?(current_user) %>
+      <% @photos.each do |photo| %>
+          <%= link_to(image_tag(photo.image.url(:medium)), user_photo_path(@user, photo) ) %>
+          <%= link_to "Uploaded #{photo.created_at}", user_photo_path(@user, photo) %>
+      <% end %>
+   <% else %>
+      <% @photos.each do |photo| %>
+          <%= image_tag(photo.image.url(:medium)) %>
+          <%= "Uploaded #{photo.created_at}" %>
+      <% end %>
+    <% end %>
+  </div>
+  </tbody>
+</table>
+

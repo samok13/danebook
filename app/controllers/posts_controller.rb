@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   before_action :require_author, only: [:destroy]
 
   def index
-    puts params
     @user = current_user
     @posts = Post.where(user_id: @user.id)
     if signed_in_user?

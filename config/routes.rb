@@ -4,10 +4,14 @@ Rails.application.routes.draw do
 
   resource :profile, :only => [:edit, :update]
 
+  resources :photos, :only => [:new, :create] do
+    get "serve"   # photo_serve_path, e.g. /photos/1/serve
+  end
+
   resources :users do 
     resource :profile, :only => [:show]
-
     resource :timeline, :only => [:show]
+    resources :photos, :only => [:index, :show]
   end
 
   resources :posts, only: [:index, :create, :destroy] do

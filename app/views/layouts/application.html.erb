@@ -18,8 +18,15 @@
 
 <% if signed_in_user? %>
   <h2>Welcome, <%= link_to "#{current_user.email}", current_user %>!</h2>
-  <%= link_to "Timeline", user_timeline_path(current_user) %> |
+  <%= link_to "My Timeline", user_timeline_path(current_user) %> |
+  <%= link_to "My Photos", user_photos_path(current_user) %> |
   <%= link_to "Logout", logout_path, method: :delete %>
+<% end %>
+<br>
+<% if @user.persisted? %>
+  <%= link_to "Timeline", user_timeline_path(@user) %> |
+  <%= link_to "Profile", user_profile_path(@user) %> |
+  <%= link_to "Photos", user_photos_path(@user) %> 
 <% end %>
 
 <%= yield %>

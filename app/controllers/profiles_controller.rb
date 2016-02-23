@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find_by_user_id(params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   def edit
@@ -11,7 +12,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find_by_user_id(current_user.id)
-    if @profile.update(whitelisted_user_params)
+    if @profile.update(whitelisted_profile_params)
       flash[:success] = "Updates have been saved."
       redirect_to user_profile_path(@profile.user)
     else
@@ -21,8 +22,8 @@ class ProfilesController < ApplicationController
   end
 
   private
-  def whitelisted_user_params
-    params.require(:profile).permit(:hometown, :lives, :words, :about, :college, :avatar)
+  def whitelisted_profile_params
+    params.require(:profile).permit(:hometown, :lives, :words, :about, :college, :avatar_id, :cover_photo_id)
   end
 
 

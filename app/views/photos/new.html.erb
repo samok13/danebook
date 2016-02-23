@@ -1,0 +1,20 @@
+
+
+<h1> Photos </h1>
+
+<h3> Paste the URL to a photo on the web..</h3>
+
+  <h3>Use Web Photo</h3>
+  <%= form_for @photo do |p| %>
+    <h3>Photo Location</h3>
+    <p><%= p.text_field :image %></p>
+  <% end %>
+
+<h3> or..</h3>
+
+
+<h3> Select a photo from your hard drive..</h3>
+<%= form_for @photo do |p| %>
+  <%= p.file_field :image %>
+  <%= p.submit "Upload Photo" %>
+<% end %>

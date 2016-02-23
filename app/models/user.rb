@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   has_many :posts
   has_many :comments
+  has_many :photos
 
   has_many :initiated_friendings, :foreign_key => :friender_id, :class_name => 'Friending'
   has_many :friended_users, :through => :initiated_friendings, :source => :friend_recipient
@@ -31,17 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def friends
-    sql = "
-      SELECT DISTINCT users.*
-      FROM users
-      JOIN friendings
-        ON users.id = friendings.friender_id
-      JOIN friendings AS reflected_friendings
-        ON reflected_friendings.friender_id = friendings.friend_id
-      WHERE reflected_friendings.friender_id = ?
-      "
-
-    User.find_by_sql([sql,self.id])
+    (friended_users + users_friended_by).uniq
   end
 
   def name

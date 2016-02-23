@@ -1,0 +1,21 @@
+<h1>Photo</h1>
+
+<%= image_tag @photo.image.url(:large) %>
+<br>
+<%= form_for @profile do |f| %>
+  <%= f.hidden_field :avatar_id, value: @photo.id %>
+  <%= f.submit "Set as Profile Picture" %>
+<% end %>
+<br>
+
+<%= form_for @profile do |f| %>
+  <%= f.hidden_field :cover_photo_id, value: @photo.id %>
+  <%= f.submit "Set as Cover Photo" %>
+<% end %>
+<br>
+
+<% if current_user == @photo.user %>  
+  <%= link_to "Delete Photo", user_photo_path(@photo.user, @photo), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
+

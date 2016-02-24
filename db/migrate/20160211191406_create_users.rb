@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.index :first_name 
       t.index :last_name
-      t.index :email, unique: true
+      t.index :email
       t.index :birthday
       t.index :gender
       t.index :auth_token, unique: true

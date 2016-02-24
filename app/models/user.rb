@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   before_create :generate_token
   after_create :create_profile
+  after_create :send_welcome_email
   has_secure_password
 
   validates :password, 

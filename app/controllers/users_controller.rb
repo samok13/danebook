@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(whitelisted_user_params)
     if @user.save
       sign_in(@user)
+      User.send_welcome_email(@user.id)
       flash[:success] = 'User was successfully created.'
       redirect_to edit_profile_path(@user)
     else

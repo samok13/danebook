@@ -22,12 +22,10 @@
   <h2>Welcome, <%= link_to "#{current_user.first_name}", current_user %>!</h2>
   <%= link_to "My Timeline", user_timeline_path(current_user) %> |
   <%= link_to "My Photos", user_photos_path(current_user) %> |
+  <%= link_to "Find Friends", users_path(@user) %> |
   <%= link_to "Logout", logout_path, method: :delete %>
 <% end %>
 <br>
-<% if @user %>
-  <%= link_to "Find Friends", users_path(@user) %> |
-<% end %>
 
 <%= yield %>
 

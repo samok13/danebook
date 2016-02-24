@@ -1,6 +1,42 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.paperclip_defaults = {
+
+  # Don't forget to make S3 your storage option!
+  :storage => :s3,
+
+  :s3_credentials => {
+
+    # put your host name here if needed
+    #   see the reading below for more details
+    # NOTE: This must be the correct region for YOU
+    :s3_host_name => "s3-us-west-1.amazonaws.com",
+
+    # NOTE: these lines are changed to use secrets.yml
+    # from the examples (which use ENV vars instead)
+    :bucket => Rails.application.secrets.s3_bucket_name,
+    :access_key_id => Rails.application.secrets.aws_access_key_id,
+    :secret_access_key => Rails.application.secrets.aws_secret_access_key
+  }
+}
+
+
+  config.action_mailer.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+  config.action_mailer.delivery_method ||= :smtp
+
+  config.action_mailer.default_url_options = {
+    :host => 'lit-gorge-99143.herokuapp.com',
+  }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

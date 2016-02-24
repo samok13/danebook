@@ -39,4 +39,11 @@ class User < ActiveRecord::Base
   def name
     "#{@first_name} #{@last_name}"
   end
+
+private
+  
+  def send_welcome_email
+    UserMailer.welcome(self).deliver!
+  end
+
 end

@@ -6,5 +6,8 @@
 <br/>
 
 <% if current_user && current_user.id == comment.user_id %>
+  
+  <%= like_status(comment) %>
+
   <%= link_to "Delete", comment_path(comment), method: :delete %>
 <% end %>

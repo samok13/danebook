@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,19 +19,20 @@
 <% end %>
 
 <% if signed_in_user? %>
-  <h2>Welcome, <%= link_to "#{current_user.email}", current_user %>!</h2>
+  <h2>Welcome, <%= link_to "#{current_user.first_name}", current_user %>!</h2>
   <%= link_to "My Timeline", user_timeline_path(current_user) %> |
   <%= link_to "My Photos", user_photos_path(current_user) %> |
   <%= link_to "Logout", logout_path, method: :delete %>
 <% end %>
 <br>
-<% if @user.persisted? %>
-  <%= link_to "Timeline", user_timeline_path(@user) %> |
-  <%= link_to "Profile", user_profile_path(@user) %> |
-  <%= link_to "Photos", user_photos_path(@user) %> 
+<% if @user %>
+  <%= link_to "Find Friends", users_path(@user) %> |
 <% end %>
 
 <%= yield %>
 
 </body>
 </html>
+
+
+

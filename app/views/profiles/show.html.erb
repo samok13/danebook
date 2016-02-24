@@ -1,8 +1,11 @@
+
+<%= link_to "Edit My Profile", edit_profile_path %>
+<br>
+
 <% if signed_in_user? && current_user != @profile.user %>
   <%= render partial: "shared/friend_button", locals: { user: @profile.user } %>
 <% end %>
-<br>
-<%= link_to "Edit Profile", edit_profile_path %>
+
 <br>
   
 
@@ -10,7 +13,9 @@
   <thead>
   <tr>
     <td> Cover Photo:</td>
+    <% if @profile.cover_photo %>
     <td><%= image_tag @profile.cover_photo.image.url(:large) %></td>
+    <% end %>
   </tr>
   <tr>
     <th class="col-sm-6">Basic Information</th>
@@ -18,7 +23,9 @@
   </tr>
   <tr>
     <td>Profile Photo:</td>
+    <% if @profile.avatar %>
     <td><%= image_tag @profile.avatar.image.url(:thumb) %></td>
+    <% end %>
   </tr>
 <p>
   </thead>

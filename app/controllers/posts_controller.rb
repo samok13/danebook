@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   layout "timeline"
   before_action :require_login, except: [:index]
-  before_action :require_author, only: [:destroy]
+  before_action :set_author, only: [:destroy]
 
   def index
     @user = current_user
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = "Post has NOT been created :("
     end
-    redirect_to posts_path
+    redirect_to :back
   end
 
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = "Post has NOT been deleted."
     end
-    redirect_to posts_path
+    redirect_to :back
   end
 
   private
@@ -40,4 +40,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(:body)
   end
 
+  def set_author
+    unless @author = current_user.posts.find_by_id(params[:id])
+      redirect_to :back
+    end
+  end
 end

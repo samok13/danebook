@@ -1,9 +1,9 @@
 class LikesController < ApplicationController
 
-  before_action :require_login
-  before_action :require_author
+  before_action :require_login, :only => [:create, :destroy]
+  before_action :set_like, :only => [:destroy]
 
-def create
+  def create
     @like = Like.new(whitelisted_like_params)
     @like.user = current_user
     
@@ -16,7 +16,6 @@ def create
   end
 
   def destroy
-    @like = Like.find(params[:id])
     if @like.destroy
       flash[:success] = "Like deleted."
     else
@@ -29,6 +28,12 @@ def create
   private
   def whitelisted_like_params
     params.require(:like).permit(:likeable_id, :likeable_type)
+  end
+
+  def set_like
+    unless @like = current_user.likes.find_by_id(params[:id])
+      redirect_to :back
+    end
   end
 
 end

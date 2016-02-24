@@ -12,7 +12,6 @@
   <%= f.hidden_field :cover_photo_id, value: @photo.id %>
   <%= f.submit "Set as Cover Photo" %>
 <% end %>
-<br>
 
 <% if current_user == @photo.user %>  
   <%= link_to "Delete Photo", user_photo_path(@photo.user, @photo), method: :delete, data: { confirm: "Are you sure?" } %>

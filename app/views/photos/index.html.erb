@@ -5,10 +5,13 @@
   <table>
   <div>
 
-   <% if @user.friends.include?(current_user) %>
+   <% if @user.friends.include?(current_user) || @user == current_user %>
       <% @photos.each do |photo| %>
           <%= link_to(image_tag(photo.image.url(:medium)), user_photo_path(@user, photo) ) %>
           <%= link_to "Uploaded #{photo.created_at}", user_photo_path(@user, photo) %>
+
+          <br>
+          <br>
       <% end %>
    <% else %>
       <% @photos.each do |photo| %>

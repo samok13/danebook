@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :require_login, only: [:create]
-  before_action :require_current_user, only: [:destroy]
+  before_action :set_comment, only:[:destroy]
 
   def create
     @comment = current_user.comments.build(whitelisted_params)
@@ -14,18 +14,23 @@ class CommentsController < ApplicationController
 
 
   def destroy
-    @comment = current_user.comments.find_by_id(params[:id])
-    if @comment.destroy
-      flash[:success] = "Comment was deleted"
-    else
-      flash[:error] = "Comment was not deleted"
-    end
-    redirect_to :back
+      if @comment.destroy
+        flash[:success] = "Comment was deleted"
+      else
+        flash[:error] = "Comment was not deleted"
+      end
+      redirect_to :back
   end
 
   private
   def whitelisted_params
     params.require(:comment).permit(:body, :post_id, :user_id)
+  end
+
+  def set_comment
+    unless @comment = current_user.comments.find_by_id(params[:id])
+      redirect_to :back
+    end
   end
 
 end

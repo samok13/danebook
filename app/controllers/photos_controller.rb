@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   before_action :require_login
-  before_action :require_author, only: [:destroy]
-  before_action :require_friend, only: [:show]
+  before_action :require_author, only: [:destroy, :show]
+  #before_action :require_friend, only: [:show]
 
   def new
     @photo = Photo.new

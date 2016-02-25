@@ -12,9 +12,46 @@
   <%= f.hidden_field :cover_photo_id, value: @photo.id %>
   <%= f.submit "Set as Cover Photo" %>
 <% end %>
-
+<br>
 <% if current_user == @photo.user %>  
   <%= link_to "Delete Photo", user_photo_path(@photo.user, @photo), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 
 
+      <div>
+        <%= render partial: 'photo_likes', locals: {photo: @photo} %>
+      </div>
+
+      <!-- Display Likes -->
+      <% unless @photo.likes.empty? %>
+      <div>
+        <%= render partial: "shared/likes", locals: { likes: @photo.likes } %>
+      </div>
+      <% end %>
+
+      <!-- Display Comments -->
+      <% if @photo.comments.present? %>
+      <div>
+        <% @photo.comments.each do |comment| %>
+          <div>
+            <h3> Comment </h3>
+            <%= comment.body %>
+            <br>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+      <br>
+      <!-- Display New Comment Form -->
+      <% if signed_in_user? %>
+      <div>
+        <%= form_for @photo.comments.build do |f| %>
+          <%= f.label :comment %>
+          <%= f.text_area :body %>
+          <%= f.hidden_field :commentable_type %>
+          <%= f.hidden_field :commentable_id %>
+        <%= f.submit "Comment" %>
+        <% end %>
+      </div>
+      <% end %>
+   

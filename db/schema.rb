@@ -16,10 +16,13 @@ ActiveRecord::Schema.define(version: 20160223041203) do
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
 
   create_table "friendings", force: :cascade do |t|
     t.integer  "friend_id",   null: false
@@ -94,7 +97,7 @@ ActiveRecord::Schema.define(version: 20160223041203) do
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true
   add_index "users", ["birthday"], name: "index_users_on_birthday"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email"
   add_index "users", ["first_name"], name: "index_users_on_first_name"
   add_index "users", ["gender"], name: "index_users_on_gender"
   add_index "users", ["last_name"], name: "index_users_on_last_name"

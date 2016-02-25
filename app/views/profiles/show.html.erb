@@ -12,14 +12,14 @@
   <table class="table col-sm-offset-1">
   <thead>
   <tr>
+    <th class="col-sm-6">Basic Information</th>
+    <th></th>
+  </tr>
+  <tr>
     <td> Cover Photo:</td>
     <% if @profile.cover_photo %>
     <td><%= image_tag @profile.cover_photo.image.url(:large) %></td>
     <% end %>
-  </tr>
-  <tr>
-    <th class="col-sm-6">Basic Information</th>
-    <th></th>
   </tr>
   <tr>
     <td>Profile Photo:</td>

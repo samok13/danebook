@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'hirb'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 ruby '2.2.1'
 gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
